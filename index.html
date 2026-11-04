@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Math-Teo | Aprende Matemáticas</title>
+
+<style>
+:root {
+  --red: #B92332;
+  --red-dark: #8F1927;
+  --red-light: #F8E9E7;
+  --white: #FFFFFF;
+  --black: #242424;
+  --beige: #E8DCC8;
+  --beige-light: #F5F0E8;
+  --beige-dark: #CBB99D;
+  --text: #292929;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--beige-light);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* DECORACIONES MATEMÁTICAS */
+
+.decoration {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.10;
+  font-weight: bold;
+}
+
+.d1 {
+  top: 18%;
+  left: 3%;
+  font-size: 85px;
+  color: var(--red);
+}
+
+.d2 {
+  top: 65%;
+  right: 4%;
+  font-size: 90px;
+  color: var(--black);
+}
+
+.d3 {
+  top: 88%;
+  left: 15%;
+  font-size: 65px;
+  color: var(--red);
+}
+
+.d4 {
+  top: 38%;
+  right: 10%;
+  font-size: 70px;
+  color: var(--beige-dark);
+}
+
+/* ENCABEZADO */
+
+header {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, #242424, #B92332);
+  color: var(--white);
+  text-align: center;
+  padding: 38px 20px;
+}
+
+header h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+header p {
+  font-size: 16px;
+  color: #F5EDE5;
+}
+
+.header-symbol {
+  position: absolute;
+  font-size: 75px;
+  opacity: 0.16;
+}
+
+.symbol-left {
+  left: 8%;
+  top: 5px;
+}
+
+.symbol-right {
+  right: 8%;
+  bottom: -10px;
+}
+
+/* NAVEGACIÓN */
+
+nav {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px;
+  background: var(--white);
+  box-shadow: 0 3px 12px #00000012;
+}
+
+nav a {
+  color: var(--black);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 9px 14px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+nav a:hover {
+  background: var(--red-light);
+  color: var(--red);
+}
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 18px;
+}
+
+.welcome {
+  text-align: center;
+  padding: 28px 15px;
+}
+
+.welcome h2 {
+  color: var(--red);
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.welcome p {
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.math-symbols {
+  margin-top: 20px;
+  font-size: 30px;
+  letter-spacing: 12px;
+  color: var(--red);
+}
+
+/* TARJETAS */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+
+.card {
+  background: var(--white);
+  padding: 25px 20px;
+  border-radius: 16px;
+  border-bottom: 5px solid var(--red);
+  box-shadow: 0 5px 18px #0000000c;
+  text-align: center;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 9px 22px #00000018;
+}
+
+.card .icon {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.card h3 {
+  color: var(--red);
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  line-height: 1.6;
+  color: #555555;
+}
+
+/* CHAT */
+
+.chat {
+  background: var(--white);
+  border: 1px solid var(--beige-dark);
+  border-radius: 18px;
+  padding: 24px;
+  margin-top: 35px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+.chat h2 {
+  text-align: center;
+  color: var(--red);
+  margin-bottom: 20px;
+}
+
+#messages {
+  min-height: 220px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding: 15px;
+  background: var(--beige-light);
+  border-radius: 12px;
+}
+
+.message {
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 12px;
+  max-width: 85%;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.bot {
+  background: var(--beige);
+  color: var(--black);
+}
+
+.user {
+  background: var(--red-light);
+  color: var(--black);
+  margin-left: auto;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--beige-dark);
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--red);
+}
+
+button {
+  border: none;
+  background: var(--red);
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--red-dark);
+}
+
+/* SECCIÓN DE RECURSOS */
+
+.resources {
+  text-align: center;
+  margin: 45px 0 25px;
+  padding: 30px;
+  background: var(--white);
+  border-radius: 16px;
+  border: 1px solid var(--beige);
+}
+
+.resources h2 {
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.resources p {
+  line-height: 1.8;
+}
+
+/* PIE DE PÁGINA */
+
+footer {
+  position: relative;
+  z-index: 1;
+  margin-top: 50px;
+  padding: 28px 15px;
+  text-align: center;
+  background: var(--black);
+  color: var(--white);
+}
+
+footer p {
+  margin-top: 8px;
+  color: var(--beige);
+}
+
+/* CELULARES Y TABLETAS */
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 31px;
+  }
+
+  .header-symbol {
+    font-size: 45px;
+  }
+
+  .input-area {
+    flex-direction: column;
+  }
+
+  .input-area button {
+    width: 100%;
+  }
+
+  .message {
+    max-width: 100%;
+  }
+
+  .welcome h2 {
+    font-size: 25px;
+  }
+
+  nav {
+    gap: 4px;
+  }
+
+  nav a {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- DECORACIONES -->
+
+<div class="decoration d1">π</div>
+<div class="decoration d2">√</div>
+<div class="decoration d3">x²</div>
+<div class="decoration d4">÷</div>
+
+<!-- ENCABEZADO -->
+
+<header>
+  <span class="header-symbol symbol-left">∑</span>
+
+  <h1>📚 Math-Teo</h1>
+
+  <p>Tu profesor personal de matemáticas</p>
+
+  <span class="header-symbol symbol-right">∞</span>
+</header>
+
+<!-- MENÚ -->
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#temas">Temas</a>
+  <a href="#chat">Chat inteligente</a>
+  <a href="#recursos">Recursos</a>
+</nav>
+
+<main>
+
+<!-- BIENVENIDA -->
+
+<section class="welcome" id="inicio">
+
+  <h2>¡Bienvenido a Math-Teo!</h2>
+
+  <p>
+    Aprende matemáticas desde cero.
+    Resuelve ejercicios, descubre fórmulas
+    y comprende cada procedimiento paso a paso.
+  </p>
+
+  <div class="math-symbols">
+    + − × ÷ π √ ∑
+  </div>
+
+</section>
+
+<!-- TEMAS -->
+
+<section class="cards" id="temas">
+
+  <article class="card">
+    <div class="icon">🔢</div>
+    <h3>Álgebra</h3>
+    <p>Aprende ecuaciones, expresiones algebraicas y operaciones.</p>
+  </article>
+
+  <article class="card">
+    <div class="icon">📐</div>
+    <h3>Geometría</h3>
+    <p>Descubre figuras geométricas, áreas, perímetros y volúmenes.</p>
+  </article>
+
+  <article class="card">
+    <div class="icon">📊</div>
+    <h3>Estadística</h3>
+    <p>Aprende a interpretar datos, tablas y gráficas.</p>
+  </article>
+
+  <article class="card">
+    <div class="icon">🧮</div>
+    <h3>Operaciones</h3>
+    <p>Practica operaciones y desarrolla tus habilidades matemáticas.</p>
+  </article>
+
+</section>
+
+<!-- CHAT -->
+
+<section class="chat" id="chat">
+
+  <h2>🤖 Habla con Math-Teo</h2>
+
+  <div id="messages">
+
+    <div class="message bot">
+      ¡Hola! Soy Math-Teo. 👋
+
+      Estoy aquí para ayudarte a aprender matemáticas.
+
+      Puedo explicarte temas, resolver ejercicios
+      y enseñarte procedimientos paso a paso.
+
+      ¿Qué tema quieres estudiar hoy?
+    </div>
+
+  </div>
+
+  <div class="input-area">
+
+    <input
+      id="question"
+      type="text"
+      placeholder="Escribe tu pregunta de matemáticas..."
+      aria-label="Escribe tu pregunta"
+    >
+
+    <button onclick="sendMessage()">Enviar</button>
+
+  </div>
+
+</section>
+
+<!-- RECURSOS -->
+
+<section class="resources" id="recursos">
+
+  <h2>¡El conocimiento está en tus manos!</h2>
+
+  <p>
+    Aprende, practica y descubre nuevas formas
+    de resolver problemas matemáticos.
+  </p>
+
+  <div class="math-symbols">
+    📏 📐 ∞ ∑ π
+  </div>
+
+</section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+
+<footer>
+
+  <strong>Math-Teo © 2026</strong>
+
+  <p>Aprende, practica y descubre.</p>
+
+</footer>
+
+<script>
+function sendMessage() {
+
+  const input = document.getElementById("question");
+  const messages = document.getElementById("messages");
+
+  const question = input.value.trim();
+
+  if (!question) return;
+
+  const userMessage = document.createElement("div");
+  userMessage.className = "message user";
+  userMessage.textContent = question;
+
+  messages.appendChild(userMessage);
+
+  const response = document.createElement("div");
+  response.className = "message bot";
+
+  response.textContent =
+    "¡Gracias por tu pregunta! La conexión con el modelo de inteligencia artificial todavía está pendiente. Pronto podrás consultar a Math-Teo desde aquí.";
+
+  messages.appendChild(response);
+
+  input.value = "";
+
+  messages.scrollTop = messages.scrollHeight;
+}
+
+document.getElementById("question")
+.addEventListener("keydown", function(event) {
+
+  if (event.key === "Enter") {
+    sendMessage();
+  }
+
+});
+</script>
+
+</body>
+</html>
