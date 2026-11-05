@@ -33,7 +33,6 @@ body {
   overflow-x: hidden;
 }
 
-/* FONDO MATEMÁTICO ALEATORIO */
 #math-background {
   position: fixed;
   inset: 0;
@@ -55,7 +54,6 @@ body {
   to { transform: translateY(-15px) rotate(10deg); }
 }
 
-/* CONTENIDO */
 header, main, footer {
   position: relative;
   z-index: 1;
@@ -220,7 +218,7 @@ section {
   margin-bottom: 8px;
 }
 
-/* CHAT */
+/* CHAT DE MATH-TEO */
 .chat-section {
   background: var(--green-dark);
   border-radius: 24px;
@@ -235,75 +233,17 @@ section {
 
 .chat-window {
   background: #EAF3ED;
-  color: var(--text);
   border-radius: 18px;
-  padding: 20px;
   margin-top: 22px;
+  overflow: hidden;
+  width: 100%;
 }
 
-.chat-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #d3dfd6;
-}
-
-.bot-avatar {
-  background: var(--green-dark);
-  color: var(--yellow);
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 22px;
-}
-
-.chat-message {
-  padding: 13px 16px;
-  border-radius: 15px;
-  margin-top: 15px;
-  max-width: 85%;
-  background: white;
-}
-
-.chat-message.user {
-  background: var(--blue);
-  color: white;
-  margin-left: auto;
-}
-
-.chat-notice {
-  font-size: 13px;
-  color: #60736A;
-  margin-top: 18px;
-  text-align: center;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.chat-input input {
-  flex: 1;
-  min-width: 0;
-  padding: 14px;
-  border: 1px solid #d3dfd6;
-  border-radius: 12px;
-  font-size: 15px;
-}
-
-.send-button {
-  background: var(--yellow);
-  color: var(--green-dark);
-  border: none;
-  padding: 0 20px;
-  border-radius: 12px;
-  font-weight: bold;
-  cursor: pointer;
+.chat-window iframe {
+  width: 100%;
+  height: 700px;
+  border: 0;
+  display: block;
 }
 
 /* LIBROS */
@@ -364,12 +304,8 @@ footer span {
     padding: 20px;
   }
 
-  .chat-input {
-    flex-direction: column;
-  }
-
-  .send-button {
-    padding: 13px;
+  .chat-window iframe {
+    height: 700px;
   }
 }
 </style>
@@ -377,7 +313,6 @@ footer span {
 
 <body>
 
-<!-- FIGURAS ALEATORIAS -->
 <div id="math-background" aria-hidden="true"></div>
 
 <header>
@@ -448,35 +383,12 @@ footer span {
     <p>Tu compañero para aprender matemáticas paso a paso.</p>
 
     <div class="chat-window">
-      <div class="chat-header">
-        <div class="bot-avatar">π</div>
-        <div>
-          <strong>Math-Teo</strong><br>
-          <small>Asistente matemático</small>
-        </div>
-      </div>
-
-      <div class="chat-message">
-        ¡Hola! Soy Math-Teo. Puedo ayudarte a comprender
-        las matemáticas con explicaciones sencillas.
-      </div>
-
-      <div class="chat-message user">
-        Quiero aprender ecuaciones cuadráticas.
-      </div>
-
-      <div class="chat-message">
-        ¡Excelente! Vamos a aprender paso a paso.
-      </div>
-
-      <p class="chat-notice">
-        La conexión con la inteligencia artificial está pendiente.
-      </p>
-
-      <div class="chat-input">
-        <input type="text" placeholder="Escribe tu pregunta..." disabled>
-        <button class="send-button" disabled>Enviar</button>
-      </div>
+      <iframe
+        src="https://udify.app/chatbot/wl3dNQodE5SWIbIX"
+        title="Asistente matemático Math-Teo"
+        frameborder="0"
+        allow="microphone;clipboard-write">
+      </iframe>
     </div>
   </section>
 
@@ -511,7 +423,7 @@ footer span {
 </footer>
 
 <script>
-/* GENERADOR DE FIGURAS EN POSICIONES ALEATORIAS */
+/* GENERADOR DE FIGURAS MATEMÁTICAS */
 const background = document.getElementById("math-background");
 
 const symbols = [
